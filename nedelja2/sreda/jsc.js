@@ -60,3 +60,16 @@ dakle racuna se 5% od 8000 din a ne od pocetnog iznosa
 i dobije se dodatni popust od 400.
 Tako da je na kraju ukupan popust 2000 + 400 = 2400 dinara
 */
+
+const dan;
+let iznos;
+do{
+    dan = parseInt(prompt('Unesite dan u nedelji brojem 1=ponedeljak ... 7=nedelja'));
+}while (dan == NaN || dan > 7 || dan < 1);
+do{
+    iznos = parseInt(prompt("Iznos kupovine: "));
+}while(iznos == NaN);
+
+const kupac = prompt("Unesite kupca ").toUpperCase();
+
+ 
