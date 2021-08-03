@@ -19,6 +19,25 @@ Puz se popeo na drvo za 8 dana
 Smatrati da drvo svakog dana raste fiksno 1cm.
 */
 
+//Poslednji dan tokom kojeg se puz popne na drvo nisam delio na decimalu ili sate vec sam ostavio kao ceo dan
+let visinaDrveta = 31;
+let visinaPenjanja = 0;
+const brzinaRasta = 1;
+const brzinaPuza = 3;
+
+let dani = 0;
+while (visinaPenjanja < visinaDrveta){
+    dani++;
+    visinaDrveta += brzinaRasta;
+    visinaPenjanja += brzinaPuza;
+    if(visinaPenjanja > visinaDrveta) visinaPenjanja = visinaDrveta;  // da se puz ne bi popeo vislje nego sto je drvo naraslo
+    console.log(`Dan ${dani}: Puz je presao ${visinaPenjanja}cm, visina drveta iznosi ${visinaDrveta}cm`);
+    
+}
+console.log(`Puz se popeo na drvo za ${dani} dana`);
+
+
+
 /*
 2. Treba izracunati poptust U DINARIMA koji ostvaruje kupac.
 
