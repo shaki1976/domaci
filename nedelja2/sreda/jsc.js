@@ -38,6 +38,9 @@ console.log(`Puz se popeo na drvo za ${dani} dana`);
 
 
 
+
+console.log("------------------------------------");
+console.log("zadatak 2");
 /*
 2. Treba izracunati poptust U DINARIMA koji ostvaruje kupac.
 
@@ -66,12 +69,18 @@ let iznos;
 let minIznos;
 
 // ovde sam odradio samo osnovnu validaciju , inace bih je radio vec kroz tipove i atribute input elemenata kojih ovde nemam
-do {
-    dan = parseInt(prompt('Unesite dan u nedelji brojem 1=ponedeljak ... 7=nedelja'));
-} while (dan == NaN || dan > 7 || dan < 1);
-do {
+
+while(true){
+    dan =prompt('Unesite dan u nedelji brojem 1=ponedeljak ... 7=nedelja');
+    dan = parseInt(dan);
+    if(dan >1 && dan < 7) break;
+    else alert("Dan mora biti broj od 1 do 7!")
+}
+while (true){
     iznos = parseInt(prompt("Iznos kupovine: "));
-} while (iznos == NaN);
+    if(!isNaN(iznos))break;
+    else alert("Iznos mora biti validan broj.");
+}
 
 // kod kupca mi nije potrebna validacija jer ako se pogresno unese pasce pod default u switch 
 // inace bih kupca uradio sa <selection>
