@@ -19,6 +19,9 @@ Puz se popeo na drvo za 8 dana
 Smatrati da drvo svakog dana raste fiksno 1cm.
 */
 
+console.log("--------------------------------")
+console.log('zadatak1:');
+
 //Poslednji dan tokom kojeg se puz popne na drvo nisam delio na decimalu ili sate vec sam ostavio kao ceo dan
 let visinaDrveta = 31;
 let visinaPenjanja = 0;
@@ -69,11 +72,12 @@ let iznos;
 let minIznos;
 
 // ovde sam odradio samo osnovnu validaciju , inace bih je radio vec kroz tipove i atribute input elemenata kojih ovde nemam
+// i za nisam obradio validaciju u slucaju 'cancel'
 
 while(true){
     dan =prompt('Unesite dan u nedelji brojem 1=ponedeljak ... 7=nedelja');
     dan = parseInt(dan);
-    if(dan >1 && dan < 7) break;
+    if(dan >=1 && dan <= 7) break;
     else alert("Dan mora biti broj od 1 do 7!")
 }
 while (true){
@@ -130,4 +134,4 @@ if(!minIznos || procenatPopusta == 0 || iznos < minIznos){
 }
 
 //ako nema pravo na popust stampa se 0 din jer je inicijalna vrednost 0
-console.log(`Ukupan ostvareni popust je: ${ukupanPopust} din`);
+console.log(`Ukupan ostvareni popust je: ${ukupanPopust.toFixed(2)} din`);
