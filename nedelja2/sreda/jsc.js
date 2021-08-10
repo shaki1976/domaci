@@ -19,6 +19,9 @@ Puz se popeo na drvo za 8 dana
 Smatrati da drvo svakog dana raste fiksno 1cm.
 */
 
+console.log("--------------------------------")
+console.log('zadatak1:');
+
 //Poslednji dan tokom kojeg se puz popne na drvo nisam delio na decimalu ili sate vec sam ostavio kao ceo dan
 let visinaDrveta = 31;
 let visinaPenjanja = 0;
@@ -26,18 +29,21 @@ const brzinaRasta = 1;
 const brzinaPuza = 3;
 
 let dani = 0;
-while (visinaPenjanja < visinaDrveta){
+while (visinaPenjanja < visinaDrveta) {
     dani++;
     visinaDrveta += brzinaRasta;
     visinaPenjanja += brzinaPuza;
-    if(visinaPenjanja > visinaDrveta) visinaPenjanja = visinaDrveta;  // da se puz ne bi popeo vislje nego sto je drvo naraslo
+    if (visinaPenjanja > visinaDrveta) visinaPenjanja = visinaDrveta; // da se puz ne bi popeo vislje nego sto je drvo naraslo
     console.log(`Dan ${dani}: Puz je presao ${visinaPenjanja}cm, visina drveta iznosi ${visinaDrveta}cm`);
-    
+
 }
 console.log(`Puz se popeo na drvo za ${dani} dana`);
 
 
 
+
+console.log("------------------------------------");
+console.log("zadatak 2");
 /*
 2. Treba izracunati poptust U DINARIMA koji ostvaruje kupac.
 
@@ -61,15 +67,71 @@ i dobije se dodatni popust od 400.
 Tako da je na kraju ukupan popust 2000 + 400 = 2400 dinara
 */
 
-const dan;
+let dan;
 let iznos;
-do{
-    dan = parseInt(prompt('Unesite dan u nedelji brojem 1=ponedeljak ... 7=nedelja'));
-}while (dan == NaN || dan > 7 || dan < 1);
-do{
+let minIznos;
+
+// ovde sam odradio samo osnovnu validaciju , inace bih je radio vec kroz tipove i atribute input elemenata kojih ovde nemam
+// i za nisam obradio validaciju u slucaju 'cancel'
+
+while(true){
+    dan =prompt('Unesite dan u nedelji brojem 1=ponedeljak ... 7=nedelja');
+    dan = parseInt(dan);
+    if(dan >=1 && dan <= 7) break;
+    else alert("Dan mora biti broj od 1 do 7!")
+}
+while (true){
     iznos = parseInt(prompt("Iznos kupovine: "));
-}while(iznos == NaN);
+    if(!isNaN(iznos))break;
+    else alert("Iznos mora biti validan broj.");
+}
 
-const kupac = prompt("Unesite kupca ").toUpperCase();
+// kod kupca mi nije potrebna validacija jer ako se pogresno unese pasce pod default u switch 
+// inace bih kupca uradio sa <selection>
+const kupac = prompt("Unesite kupca  (zaposlen,student, penzioner, firma, ostalo) ").toLowerCase();
 
- 
+let ukupanPopust = 0;
+let procenatPopusta;
+const dodatniPopust = 5;
+
+switch (kupac) {
+    case "zaposlen":
+        procenatPopusta = 5;
+        minIznos = 5000;
+        break;
+    case "student":
+        procenatPopusta = 20;
+        minIznos = 3000;
+        break;
+    case "penzioner":
+        procenatPopusta = 30;
+        minIznos = 2000;
+        break;
+    case "firma":
+        procenatPopusta = 10;
+        minIznos = 10000;
+        break;
+    default:
+        procenatPopusta = 0;
+        break;
+}
+
+
+
+/* sledeci deo je uradjen sa pretpostavkom da je vikendom 
+samo dodatni popust za one koji ga imaju i radnim danima
+a da ostali nemaju popust ni vikendom.
+*/
+
+let osnovniPopust = ((iznos/100) * procenatPopusta) ;
+
+if(!minIznos || procenatPopusta == 0 || iznos < minIznos){
+    console.log("Nemate pravo na popust.");
+}else if(dan === 6 || dan === 7){
+    ukupanPopust = osnovniPopust + ((iznos - osnovniPopust)/100) * dodatniPopust;
+}else {
+    ukupanPopust = osnovniPopust;
+}
+
+//ako nema pravo na popust stampa se 0 din jer je inicijalna vrednost 0
+console.log(`Ukupan ostvareni popust je: ${ukupanPopust.toFixed(2)} din`);
