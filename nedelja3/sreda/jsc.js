@@ -46,9 +46,8 @@ console.log("---------------------------nizovi zadatak 1");
   // povrat f-je kao zasebni elementi u nizu
   niz.push(...sumiranjeIMnozenje(niz));
   console.log(niz);
-}
-{
-  // varijanta da f-ja vraca elemente u niz
+} {
+  // letijanta da f-ja vraca elemente u niz
 
   let niz = [1, 2, 3, 4, 5, 6];
 
@@ -170,3 +169,50 @@ console.log("---------------------------nizovi zadatak 5");
 
   console.log(`novo a: ${a}, novo b: ${b}`);
 }
+
+console.log("---------------------------funkcije zadatak 1");
+
+// /**
+//  * 1. Napisati funkciju koja vraca najduzi palindrom u datom stringu.
+// Napomena: nije potrebno da se ispituje da li je uneti string palindrom, neka se podrazumeva da jeste
+// Primer: "HYTBCABADEFGHABCDEDCBAGHTFYW12345678987654321ZWETYGDE"
+// Ispis: "12345678987654321"
+//  */
+
+//ovo je korigovano resenje sa neta, posto ce vecina resenja sa neta "ana voli milovana" vratiti ana kao najduzi palindrom
+{
+function is_Palindrome(str1) {
+  let rev = str1.split("").reverse().join("");
+  return str1 == rev;
+}
+
+function longest_palindrome(str1) {
+  str1 = str1.split(" ").join("");   // ovo je jedina korekcija, izbacio sam razmake iz stringa
+  let max_length = 0,
+    maxp = '';
+
+  for (let i = 0; i < str1.length; i++) {     
+    let subs = str1.substr(i, str1.length);
+
+ 
+    for (let j = subs.length; j >= 0; j--) {
+      let sub_subs_str = subs.substr(0, j);
+      if (sub_subs_str.length <= 1)
+        continue;
+
+      if (is_Palindrome(sub_subs_str)) {
+        if (sub_subs_str.length > max_length) {
+          max_length = sub_subs_str.length;
+          maxp = sub_subs_str;
+        }
+      }
+    }
+  }
+
+  return maxp;
+}
+console.log(longest_palindrome("abracadabra"));
+console.log(longest_palindrome("ana voli milovana"));  
+console.log(longest_palindrome("HYTBCABADEFGHABCDEDCBAGHTFYW12345678987654321ZWETYGDE"));
+}
+
