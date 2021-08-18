@@ -68,6 +68,10 @@ for (let i = 0; i < pokemoni.length; i++) {
   const button = document.createElement("button");
   button.id = pokemoni[i].ime.toLowerCase();
   button.textContent = pokemoni[i].ime;
+  button.addEventListener("click", (e) => {
+    prikaziIzabranogPokemona(e.target.id);
+    izabraniPokemonDiv.classList.add("visible");
+  });
   wrapperDiv.append(button);
   pokemonButtons.push(button);
 }
@@ -80,12 +84,12 @@ const izabraniPokemonDiv = document.createElement("div");
 izabraniPokemonDiv.classList.add("hidden");
 izabraniPokemonDiv.id = "izabrani-pokemon";
 
-const ul = document.createElement("ul");
-izabraniPokemonDiv.append(ul);
-
 body.append(izabraniPokemonDiv);
 
 function prikaziIzabranogPokemona(pokemonIme) {
+  izabraniPokemonDiv.innerHTML = "";
+  const ul = document.createElement("ul");
+  izabraniPokemonDiv.append(ul);
   let pokemon = pokemoni.find(
     (pokemon) => pokemon.ime.toLowerCase() == pokemonIme
   );
@@ -95,12 +99,17 @@ function prikaziIzabranogPokemona(pokemonIme) {
     if (key.toLocaleLowerCase() == "karakteristike") {
       let dodatak = "";
       for (const el in pokemon[key]) {
-        dodatak += pokemon[key][el];
+        dodatak += el + ":" + pokemon[key][el] + " ";
       }
       li.textContent = key + ": " + dodatak;
+    } else if (key == "zbirKarakteristika") {
+      li.textContent = "zbir karakteristika: " + pokemon.zbirKarakteristika();
+    } else {
+      li.textContent = key + ": " + pokemon[key];
     }
-    li.textContent = key + ": " + pokemon[key];
+
     ul.append(li);
+    wrapperDiv.append(izabraniPokemonDiv);
   });
 }
 
@@ -113,8 +122,3 @@ function toggleVisibility() {
 
 //postavljanje slusaca na izaberi pokemona
 btnIzaberiPokemona.addEventListener("click", toggleVisibility.bind(wrapperDiv));
-
-wrapperDiv.addEventListener("click", (e) => {
-  prikaziIzabranogPokemona(e.target.id);
-  toggleVisibility.call(izabraniPokemonDiv);
-});
