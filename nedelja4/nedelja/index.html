@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+    <script src="js.js" defer></script>
+  </head>
+  <body>
+    <div id="table-wrapper">
+      <div id="input-wrapper">
+        <label for="">Unesite naziv filma</label>
+        <input
+          type="text"
+          id="nazivFilma"
+          name="nazivFilma"
+          placeholder="naziv filma"
+        />
+        <label for="ocena">Ocena</label>
+        <input
+          type="number"
+          name="ocena"
+          id="ocena"
+          placeholder="Ocena od 1 do 10"
+          min="1"
+          max="10"
+        />
+        <button id="potvrdi1">Potvrdi unos</button>
+      </div>
+      <table>
+        <thead>
+          <tr>
+            <th>Naziv</th>
+            <th>Ocena</th>
+          </tr>
+        </thead>
+        <tbody></tbody>
+      </table>
+    </div>
+
+    <br />
+    <hr />
+    <br />
+
+    <div id="zad2-wrapper">
+      <div id="sabirciWrapper">
+        <label for="sabirak1">Prvi sabirak</label>
+        <input type="number" name="" id="sabirak1" />
+        <label for="sabirak2">Drugi sabirak</label>
+        <input type="number" name="" id="sabirak2" />
+        <button id="saberi">Saberi</button>
+        <p id="rezultat">Rezultat</p>
+      </div>
+
+      <div id="checkboxWrapper">
+        <label for="">Prikazi</label
+        ><input type="checkbox" name="prikazi" id="prikazi" checked />
+      </div>
+    </div>
+  </body>
+</html>
