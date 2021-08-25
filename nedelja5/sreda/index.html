@@ -1,44 +1,62 @@
 <!DOCTYPE html>
 <html lang="en">
-  <head>
-    <meta charset="UTF-8" />
-    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Document</title>
-    <script src="jsc.js"></script>
-  </head>
-  <body>
-    <form action="">
-        <div><input type="text" name="firstName" id="firstName" placeholder="name" /></div>
-       <div id="name-error"></div>
-        <div>
-          <input type="text" name="surname" id="surname" placeholder="surname" />
-        </div>
-        <div id="surname-error"></div>
-        <div>
-          <input type="password" name="password" id="password" placeholder="password" />
-        </div>
-        <div id="password-error"></div>
-        <div>
-            <input type="password" name="password-confirm" id="password-confirm" placeholder="password" />
-          </div>
-          <div id="password-confirm-error"></div>
-        <div>
-            <div class="checkbox-group">
-                <div><input type="checkbox" name="html" id="html"></div>
-                <div><input type="checkbox" name="css" id="css"></div>
-                <div><input type="checkbox" name="javascript" id="javascript"></div>
-                <div><input type="checkbox" name="php" id="php"></div>
-            </div>
-          <select name="kursevi" id="kursevi">
-            <option value="default" selected disabled>Chose your course</option>
-            <option value="html">HTML</option>
-            <option value="css">CSS</option>
-            <option value="javascript">JavaScript</option>
-            <option value="php">PHP</option>
-            <option value="python">Python</option>
-          </select>
-        </div>
-        <div><input type="submit" value="register" /></div>
-  </body>
+
+<head>
+  <meta charset="UTF-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Document</title>
+  <script src="jsc.js" defer></script>
+</head>
+
+<body>
+  <form action="" id="forma">
+    <div><input type="text" name="firstName" id="firstName" placeholder="name" /></div>
+    <div id="name-error"></div>
+    <div>
+      <input type="text" name="surname" id="surname" placeholder="surname" />
+    </div>
+    <div id="surname-error"></div>
+    <div>
+      <input type="password" name="password" id="password" placeholder="password" />
+    </div>
+    <div id="password-error"></div>
+    <div>
+      <input type="password" name="password-confirm" id="password-confirm" placeholder="confirm-password" />
+    </div>
+    <div id="password-confirm-error"></div>
+
+    <div class="checkbox-courses">
+      <div><input type="checkbox" name="html" id="html" value="html"><label for="html">HTML</label></div>
+      <div><input type="checkbox" name="css" id="css" value="css"><label for="css">CSS</label></div>
+      <div><input type="checkbox" name="javascript" id="javascript" value="javascript"><label for="javascript">JavaScript</label></div>
+      <div><input type="checkbox" name="php" id="php" value="php"><label for="php">PHP</label></div>
+    </div>
+    <div id="courses-error"></div>
+
+    <select name="city" id="city">
+      <option value="default" selected disabled>Chose your city</option>
+      <option value="ns">Novi Sad</option>
+      <option value="bg">Beograd</option>
+      <option value="ni">Nis</option>
+      <option value="su">Subotica</option>
+    </select>
+    <div id="city-error"></div>
+
+    <p>Gender</p>
+    <div>
+      <input type="radio" id="female" name="gender" value="female">
+      <label for="female">female</label>
+    </div>
+
+    <div>
+      <input type="radio" id="male" name="gender" value="male">
+      <label for="male">male</label>
+    </div>
+    <div id="gender-error"></div>
+    <div><input type="submit" value="submit" id="submit" /></div>
+  </form>
+  <div class="user-review"></div>
+</body>
+
 </html>
