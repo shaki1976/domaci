@@ -26,7 +26,7 @@ const lastName = document.querySelector('#surname')
 const password = document.querySelector('#password')
 const confirmpassword = document.querySelector('#password-confirm')
 const city = document.querySelector('#city')
-const courses = document.querySelector('.checkbox-courses')
+const coursesDiv = document.querySelector('.checkbox-courses')
 const female = document.getElementById('female')
 const male = document.getElementById('male')
 
@@ -134,7 +134,15 @@ form.addEventListener('submit', (event) => {
         isValidate = false
     }
 
+let kursevi = []
 
+    if (html.value == 'html') kursevi.push(html.value)
+    if(css.value == 'css') kursevi.push(css.value)
+    if(javascript.value == 'javascript') kursevi.push(javascript.value)
+    if(php.value == 'php') kursevi.push(php.value)
+    
+    // ostalo je jos ponesto ali obzirom da smo domaci dobili sinoc a ja sam od 7 jutros na poslu
+    // a sada je 18:30 ovo ce biti moj prvi ne zavrseni domaci
 
     if (isValidate) {
 
@@ -144,12 +152,19 @@ form.addEventListener('submit', (event) => {
             last_name: lastName.value.trim(),
             usr_password: password.value.trim(),
             usr_city: city.value,
-            usr_course: course.value
+            usr_course: kursevi,
+           // usr_gender: 
         }
 
-        userReview.textContent += "Name: " + user.first_name
-        userReview.textContent += "Surname: " + user.last_name
-        userReview.textContent += "Couse: " + user.usr_coure
+        userReview.innerHTML = `
+        <p> first name: ${user.first_name}</p>
+        <p> last name: ${user.last_name}</p>
+        <p> user password: ${user.usr_password}</p>
+        <p> city: ${user.usr_city}</p>
+        `
+        // userReview.textContent += "Name: " + user.first_name
+        // userReview.textContent += "Surname: " + user.last_name
+        // userReview.textContent += "Couse: " + user.usr_coure
 
     }
 })
