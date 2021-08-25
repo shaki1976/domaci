@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+    <script src="jsc.js"></script>
+  </head>
+  <body>
+    <form action="">
+        <div><input type="text" name="firstName" id="firstName" placeholder="name" /></div>
+       <div id="name-error"></div>
+        <div>
+          <input type="text" name="surname" id="surname" placeholder="surname" />
+        </div>
+        <div id="surname-error"></div>
+        <div>
+          <input type="password" name="password" id="password" placeholder="password" />
+        </div>
+        <div id="password-error"></div>
+        <div>
+            <input type="password" name="password-confirm" id="password-confirm" placeholder="password" />
+          </div>
+          <div id="password-confirm-error"></div>
+        <div>
+            <div class="checkbox-group">
+                <div><input type="checkbox" name="html" id="html"></div>
+                <div><input type="checkbox" name="css" id="css"></div>
+                <div><input type="checkbox" name="javascript" id="javascript"></div>
+                <div><input type="checkbox" name="php" id="php"></div>
+            </div>
+          <select name="kursevi" id="kursevi">
+            <option value="default" selected disabled>Chose your course</option>
+            <option value="html">HTML</option>
+            <option value="css">CSS</option>
+            <option value="javascript">JavaScript</option>
+            <option value="php">PHP</option>
+            <option value="python">Python</option>
+          </select>
+        </div>
+        <div><input type="submit" value="register" /></div>
+  </body>
+</html>
