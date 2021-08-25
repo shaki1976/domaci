@@ -16,155 +16,201 @@
 
 //HTML I CSS po sopstvenom izboru!!!!!!!!!!!!!!!
 
+let isValidate = true;
+const form = document.getElementById("forma");
+// const userReview = document.querySelector(".user-review");
+const usersWrapper = document.getElementById("usersWrapper");
 
-let isValidate = true
-const form = document.getElementById('forma')
-const userReview = document.querySelector('.user-review')
+const firstName = document.querySelector("#firstName");
+const lastName = document.querySelector("#surname");
+const password = document.querySelector("#password");
+const confirmpassword = document.querySelector("#password-confirm");
+const city = document.querySelector("#city");
+const coursesDiv = document.querySelector(".checkbox-courses");
+const female = document.getElementById("female");
+const male = document.getElementById("male");
 
-const firstName = document.querySelector('#firstName')
-const lastName = document.querySelector('#surname')
-const password = document.querySelector('#password')
-const confirmpassword = document.querySelector('#password-confirm')
-const city = document.querySelector('#city')
-const coursesDiv = document.querySelector('.checkbox-courses')
-const female = document.getElementById('female')
-const male = document.getElementById('male')
+const html = document.getElementById("html");
+const css = document.getElementById("css");
+const javascript = document.getElementById("javascript");
+const php = document.getElementById("php");
 
+const firstNameError = document.querySelector("#name-error");
+const lastNameError = document.querySelector("#surname-error");
+const passwordError = document.querySelector("#password-error");
+const confirmPasswordError = document.querySelector("#password-confirm-error");
+const courseError = document.querySelector("#courses-error");
+const cityError = document.getElementById("city-error");
+const genderError = document.getElementById("gender-error");
 
-const html = document.getElementById('html')
-const css = document.getElementById('css')
-const javascript = document.getElementById('javascript')
-const php = document.getElementById('php')
-
-const firstNameError = document.querySelector('#name-error')
-const lastNameError = document.querySelector('#surname-error')
-const passwordError = document.querySelector('#password-error')
-const confirmPasswordError = document.querySelector('#password-confirm-error')
-const courseError = document.querySelector("#courses-error")
-const cityError = document.getElementById('city-error')
-const genderError = document.getElementById('gender-error')
-
-
+const users = [];
 
 function stringHasNumber(str) {
-    number = /\d/
-    return number.test(str)
+  number = /\d/;
+  return number.test(str);
 }
 
 function stringHasUpperCase(str) {
-    chars = /[A-Z]/
-    return chars.test(str)
+  chars = /[A-Z]/;
+  return chars.test(str);
 }
 
-function resetErrors(){
-    firstNameError.textContent = ""
-    lastNameError.textContent = ""
-    courseError.textContent = ""
-    cityError.textContent = ""
-    confirmPasswordError.textContent = ""
-    passwordError.textContent = ""
+function resetErrors() {
+  firstNameError.innerHTML = "";
+  lastNameError.innerHTML = "";
+  courseError.innerHTML = "";
+  cityError.innerHTML = "";
+  confirmPasswordError.innerHTML = "";
+  passwordError.innerHTML = "";
 }
 
-form.addEventListener('submit', (event) => {
-    event.preventDefault()
+function clearInputs() {
+  firstName.value = "";
+  lastName.value = "";
+  password.value = "";
+  confirmpassword.value = "";
+  city.value = "default";
+  male.checked = false;
+  female.checked = false;
+  html.checked = false;
+  css.checked = false;
+  javascript.checked = false;
+  php.checked = false;
+}
 
-    if (firstName.value.trim() == "") {
-        firstNameError.textContent = ""
-        firstNameError.textContent = "This field is requierd"
-        isValidate = false
-    } else if (firstName.value.trim().length < 5) {
-        firstNameError.textContent = ""
-        firstNameError.textContent = "This field must include minimum five character"
-        isValidate = false
-    } else if (firstName.value.trim().length >= 15) {
-        firstNameError.textContent = ""
-        firstNameError.textContent = "This field must have less then fifteen characters"
-        isValidate = false
-    }
+form.addEventListener("submit", (event) => {
+  event.preventDefault();
 
-    if (lastName.value.trim() == "") {
-        lastNameError.textContent = ""
-        lastNameError.textContent = "This field is requierd"
-        isValidate = false
-    } else if (lastName.value.length < 5) {
-        lastNameError.textContent = ""
-        lastNameError.textContent = "This field must include minimum five character"
-        isValidate = false
-    } else if (lastName.value.length >= 20) {
-        lastNameError.textContent = ""
-        lastNameError.textContent = "This field must have less then 20 characters"
-        isValidate = false
-    }
+  if (firstName.value.trim() == "") {
+    firstNameError.textContent = "";
+    firstNameError.textContent = "This field is requierd";
+    firstName.value = "";
+    isValidate = false;
+  } else if (firstName.value.trim().length < 5) {
+    firstNameError.textContent = "";
+    firstName.value = "";
+    firstNameError.textContent =
+      "This field must include minimum five character";
+    isValidate = false;
+  } else if (firstName.value.trim().length >= 15) {
+    firstNameError.textContent = "";
+    firstName.value = "";
+    firstNameError.textContent =
+      "This field must have less then fifteen characters";
+    isValidate = false;
+  }
 
-    let passValue = password.value.trim()
-    if (passValue == "") {
-        passwordError.textContent = ""
-        passwordError.textContent = "This field is requierd"
-        isValidate = false
-    } else if (passValue.length < 8) {
-        passwordError.textContent = ""
-        passwordError.textContent = "This field must include minimum eight character"
-        isValidate = false
-    } else if (!stringHasNumber(passValue)) {
-        passwordError.textContent = ""
-        passwordError.textContent = "This field must include number"
-        isValidate = false
-    } else if (!stringHasUpperCase(passValue)) {
-        passwordError.textContent = ""
-        passwordError.textContent = "This field must include uppercase"
-        isValidate = false
-    }
+  if (lastName.value.trim() == "") {
+    lastName.value = "";
+    lastNameError.textContent = "";
+    lastNameError.textContent = "This field is requierd";
+    isValidate = false;
+  } else if (lastName.value.length < 5) {
+    lastName.value = "";
+    lastNameError.textContent = "";
+    lastNameError.textContent =
+      "This field must include minimum five character";
+    isValidate = false;
+  } else if (lastName.value.length >= 20) {
+    lastName.value = "";
+    lastNameError.textContent = "";
+    lastNameError.textContent = "This field must have less then 20 characters";
+    isValidate = false;
+  }
 
-    if (confirmpassword.value.trim() !== password.value.trim()) {
-        confirmPasswordError.textContent = ""
-        confirmPasswordError.textContent = "Has to be same as password"
-        isValidate = false
-    }
+  let passValue = password.value.trim();
+  if (passValue == "") {
+    passwordError.textContent = "";
+    passwordError.textContent = "This field is requierd";
+    isValidate = false;
+  } else if (passValue.length < 8) {
+    passwordError.textContent = "";
+    passwordError.textContent =
+      "This field must include minimum eight character";
+    isValidate = false;
+  } else if (!stringHasNumber(passValue)) {
+    passwordError.textContent = "";
+    passwordError.textContent = "This field must include number";
+    isValidate = false;
+  } else if (!stringHasUpperCase(passValue)) {
+    passwordError.textContent = "";
+    passwordError.textContent = "This field must include uppercase";
+    isValidate = false;
+  }
 
-    if (!(city.value == "ns" || city.value == "bg" || city.value == "ni" || city.value == "su")) {
-        cityError.textContent = ""
-        cityError.textContent = "You need to chose somthing"
-        isValidate = false
-    }
+  if (confirmpassword.value.trim() !== password.value.trim()) {
+    confirmPasswordError.textContent = "";
+    confirmPasswordError.textContent = "Has to be same as password";
+    isValidate = false;
+  }
 
-    // if (!html.checked || !css.checked || !javascript.checked || !php.checked)
-    if (html.value != 'html' || css.value != 'css' || javascript.value!= 'javascript' || php.value != 'php') {
-        courseError.textContent = ""
-        courseError.textContent = "You need to chose somthing"
-        isValidate = false
-    }
+  if (
+    !(
+      city.value == "ns" ||
+      city.value == "bg" ||
+      city.value == "ni" ||
+      city.value == "su"
+    )
+  ) {
+    cityError.textContent = "";
+    cityError.textContent = "You need to chose something";
+    isValidate = false;
+  }
 
-let kursevi = []
+  if (!male.checked && !female.checked) {
+    genderError.textContent = "";
+    genderError.textContent = "This field is requierd";
+    isValidate = false;
+  }
 
-    if (html.value == 'html') kursevi.push(html.value)
-    if(css.value == 'css') kursevi.push(css.value)
-    if(javascript.value == 'javascript') kursevi.push(javascript.value)
-    if(php.value == 'php') kursevi.push(php.value)
-    
-    // ostalo je jos ponesto ali obzirom da smo domaci dobili sinoc a ja sam od 7 jutros na poslu
-    // a sada je 18:30 ovo ce biti moj prvi ne zavrseni domaci
+  if (!html.checked && !css.checked && !javascript.checked && !php.checked) {
+    courseError.textContent = "";
+    courseError.textContent = "You need to chose something";
+    isValidate = false;
+  }
 
-    if (isValidate) {
+  let kursevi = [];
 
-        resetErrors()
-        let user = {
-            first_name: firstName.value.trim(),
-            last_name: lastName.value.trim(),
-            usr_password: password.value.trim(),
-            usr_city: city.value,
-            usr_course: kursevi,
-           // usr_gender: 
-        }
+  if (html.value == "html") kursevi.push(html.value);
+  if (css.value == "css") kursevi.push(css.value);
+  if (javascript.value == "javascript") kursevi.push(javascript.value);
+  if (php.value == "php") kursevi.push(php.value);
 
-        userReview.innerHTML = `
+  // ako su podaci validni
+
+  if (isValidate) {
+    resetErrors(); // brisem ispis gresaka
+
+    let ime = firstName.value.trim();
+    ime = ime.charAt(0).toUpperCase() + ime.slice(1);
+
+    let prezime = lastName.value.trim();
+    prezime = prezime.charAt(0).toUpperCase() + prezime.slice(1);
+
+    let user = {
+      first_name: ime,
+      last_name: prezime,
+      usr_password: password.value.trim(),
+      usr_city: city.value,
+      usr_courses: kursevi,
+      usr_gender: male.checked ? male.value : female.value,
+    };
+
+    users.push(user); // dodajem korisnika u niz
+    const userReview = document.createElement("div");
+    userReview.classList.add("user-review");
+    userReview.innerHTML = `
         <p> first name: ${user.first_name}</p>
         <p> last name: ${user.last_name}</p>
         <p> user password: ${user.usr_password}</p>
         <p> city: ${user.usr_city}</p>
-        `
-        // userReview.textContent += "Name: " + user.first_name
-        // userReview.textContent += "Surname: " + user.last_name
-        // userReview.textContent += "Couse: " + user.usr_coure
+        <p> courses: ${user.usr_courses.join(",")}</p>
+        <p> gender: ${user.usr_gender}</p> 
+        <hr>
+        `;
 
-    }
-})
+    usersWrapper.append(userReview);
+    console.log(users);
+    clearInputs();
+  }
+});
