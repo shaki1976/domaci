@@ -1,29 +1,51 @@
 let count = 4;
-const data = [
-    {
-        id: 1,
-        desc: '12324',
-        done: true
-    },
-    {
-        id: 2,
-        desc: 'nesto2 dsgsdgsdg 21231',
-        done: false
-    },
-    {
-        id: 3,
-        desc: 'hhehe nesto 3 kdk',
-        done: false
-    },
-    {
-        id:4 ,
-        desc: 'jklgjlskkllo',
-        done: true
-    },
-]
+export const data = [
+  {
+    id: 1,
+    name: "uzina-poneti",
+    desc: "poneti uzinu",
+    napomena: "ostaces gladan",
+    done: true,
+  },
+  {
+    id: 2,
+    name: "voce",
+    desc: "kupiti voce",
+    napomena: "zdravo",
+    done: true,
+  },
+  {
+    id: 3,
+    name: "sastanak",
+    desc: "u pola dva , obavezno prisustvo",
+    napomena: "obavezno",
+    done: false,
+  },
+  {
+    id: 4,
+    name: "uzina-jelo",
+    desc: "pojesti uzinu",
+    napomena: "nemoj biti gladan",
+    done: false,
+  },
+];
 
 //dodaje objekat item na listu
-const add = (item) =>{ //Napomena: objekat item sadrzi samo desc i done {desc, done}
-    item.id = ++count;
-    data.push(item);
-}
+const add = (item) => {
+  //Napomena: objekat item sadrzi samo desc i done {desc, done}
+  // item.id = ++count;
+  data.push({ id: ++count, ...item });
+  return count;
+};
+
+const deleteById = (id) => {
+  let index = data.findIndex((item) => item.id == id);
+  data.splice(index, 1);
+};
+
+const changeById = (id, newItem) => {
+  let index = data.findIndex((item) => item.id == id);
+  data.splice(index, 1, newItem);
+};
+
+export { add, deleteById, changeById };

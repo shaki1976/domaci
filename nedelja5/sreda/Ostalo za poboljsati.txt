@@ -1,0 +1,2 @@
+Ostao je problem da kada izvrsim ispravku pogresno unesenih polja , ponovnim pritiskom na submit nista se ne desava.
+To cu pokusati da resim prebacivanjem logike u funkciju pa onda moze da se ukloni eventListener i ponovo postavi.

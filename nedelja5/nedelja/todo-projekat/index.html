@@ -1,19 +1,49 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>ToDo</title>
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta http-equiv="X-UA-Compatible" content="ie=edge" />
+    <title>Project Board</title>
+    <link rel="stylesheet" href="./styles/app.css" />
     <script type="module" src="./src/index.js" defer></script>
-</head>
-<body>
-    <form id="forma">
-        <input type="text" id="input-text">
-        <input type="submit" value="Dodaj" id="btn-dodaj">
+  </head>
+  <body>
+    <header id="main-header">
+      <h1>To Do</h1>
+    </header>
+    <form action="" class="">
+      <section id="form-section">
+        <header>
+          <h2>Unesite projekat</h2>
+        </header>
+        <div class="card">
+          <input type="text" id="nameInput" />
+          <label for="nameInput">Naziv projekta</label>
+        </div>
+        <div class="card">
+          <input type="text" id="descriptionInput" />
+          <label for="descriptionInput">Opis projekta</label>
+        </div>
+        <div class="card">
+          <input type="text" id="napomenaInput" />
+          <label for="napomenaInput">Napomena</label>
+        </div>
+        <div><input type="submit" value="submit" class="button" /></div>
+      </section>
     </form>
-    <div id="lista">
 
-    </div>
-</body>
+    <section id="active-projects">
+      <header>
+        <h2>Aktivno</h2>
+      </header>
+      <ul id="active-ul"></ul>
+    </section>
+    <section id="finished-projects">
+      <header>
+        <h2>Zavrseno</h2>
+      </header>
+      <ul id="finished-ul"></ul>
+    </section>
+  </body>
 </html>
