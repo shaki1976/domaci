@@ -17,6 +17,9 @@ class Proizvod {
         Proizvod.#id++;
     }
 
+    ispisiProizvod(proizvod){
+ const proizvodDiv 
+    }
 
 }
 
@@ -37,7 +40,8 @@ class BelaTehnika extends Proizvod {
 class Proizvodi {
   static  #proizvodi = [];
  static addProizvod(proizvod){
-      Proizvodi.#proizvodi.push(proizvod);
+     if(!(proizvod instanceof Proizvod)) return;
+     Proizvodi.#proizvodi.push(proizvod);
   }
  static get proizvod(id) {
       return Proizvodi.#proizvodi[id];
@@ -50,9 +54,11 @@ class Proizvodi {
 }
 
 
+
+
 let mleko = new PrehrambeniProizvod("mleko", 90, 160, "26.09.2021");
 let mlekoveliko = new PrehrambeniProizvod("mleko1.5", 119, 120, "24.09.2021");
-let frizider = new BelaTehnika('frizider', 32000, 4, 5);
-console.log(mleko);
-console.log(mlekoveliko);
-console.log(frizider);
+let frizider = new BelaTehnika('frizider', 32000, 4, 60);
+let pecenica = new PrehrambeniProizvod('pecenica', 1100 , 5, '02.10.2021.');
+let mikrotalasna = new BelaTehnika('mikrotalasna', 12300, 17, 24)
+
