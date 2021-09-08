@@ -1,4 +1,5 @@
 class Kupac {
+  static isLoged = false;
   constructor(ime, sifra, isAdmin) {
     this.ime = ime;
     this.sifra = sifra;
@@ -29,12 +30,44 @@ class Proizvod {
     inputKolicina.id = "kolicina";
     const btnDodaj = document.createElement("button");
     btnDodaj.textContent = "Dodaj u korpu";
+    btnDodaj.id = this.id;
+
     divProizvod.append(pNaziv, pCena, inputKolicina, btnDodaj);
     // divProizvod.style.border = "solid 1px black";
+
+    btnDodaj.addEventListener("click", (event) => {
+      event.preventDefault();
+      const divKorpa = document.querySelector(".korpa");
+
+      let kolicina = Number(inputKolicina.value.trim());
+
+      if (this.dostupnaKolicina < kolicina) {
+        inputKolicina.value = "";
+        inputKolicina.placeholder = "kolicina je veca od raspolozive";
+        // inputKolicina.style.color = "red";
+
+        return;
+      }
+
+      const divProizvodKorpa = document.createElement("div");
+      divProizvodKorpa.className = "proizvod";
+      const pNaziv = document.createElement("p");
+      pNaziv.textContent = `Naziv: ${this.naziv}`;
+      const pCena = document.createElement("p");
+      pCena.textContent = `Cena: ${this.cena}din`;
+      const pKolicina = document.createElement("p");
+      pKolicina.textContent = `Kolicina: ${kolicina}`;
+      const btnObrisiIzKorpe = document.createElement("button");
+      btnObrisiIzKorpe.textContent = "Obrisi iz korpe";
+      divProizvodKorpa.append(pNaziv, pCena, pKolicina, btnObrisiIzKorpe);
+      divKorpa.append(divProizvodKorpa);
+
+      this.dostupnaKolicina -= kolicina;
+      inputKolicina.value = "";
+    });
+
     return divProizvod;
   }
-
-  dodajUKorpu(proizvod) {}
 }
 
 class PrehrambeniProizvod extends Proizvod {
@@ -60,7 +93,7 @@ class BelaTehnika extends Proizvod {
   ispisiProizvod() {
     const divProizvod = super.ispisiProizvod();
     const pGarancija = document.createElement("p");
-    pGarancija.textContent = `Rok trajanja: ${this.garancija}`;
+    pGarancija.textContent = `Garancija: ${this.garancija} god`;
     divProizvod.lastElementChild.before(pGarancija);
     return divProizvod;
   }
@@ -92,9 +125,9 @@ class Proizvodi {
 // kreiranje proizvoda
 let mleko = new PrehrambeniProizvod("mleko", 90, 160, "26.09.2021");
 let mlekoveliko = new PrehrambeniProizvod("mleko1.5", 119, 120, "24.09.2021");
-let frizider = new BelaTehnika("frizider", 32000, 4, 60);
+let frizider = new BelaTehnika("frizider", 32000, 4, 5);
 let pecenica = new PrehrambeniProizvod("pecenica", 1100, 5, "02.10.2021.");
-let mikrotalasna = new BelaTehnika("mikrotalasna", 12300, 17, 24);
+let mikrotalasna = new BelaTehnika("mikrotalasna", 12300, 17, 2);
 
 //dodavanje proizvoda u niz
 Proizvodi.addProizvod(mleko);
@@ -143,16 +176,20 @@ function logovanje() {
 
   if (!kupac) return;
 
+  console.log(Kupac.isLoged);
+  if (Kupac.isLoged) {
+    inputPassword.value = "";
+    inputUsername.value = "";
+    return;
+  }
+
   const h3Korpa = document.createElement("h3");
   h3Korpa.innerHTML = `Vasa korpa : <span>${kupac.ime}</span>`;
   body.firstElementChild.after(h3Korpa);
-  divKorpa = document.createElement("div");
+  const divKorpa = document.createElement("div");
   divKorpa.className = "korpa";
-  body.h3Korpa.after(divKorpa);
-  // const divProizvod = document.createElement("div");
-  // divProizvod.className = "proizvod";
-  // const pNaziv = document.createElement("p");
-  // pNaziv.textContent = `Naziv: ${kupac.naziv}`;
-  // const pCena = document.createElement("p");
-  // pCena.textContent = `Cena: ${this.cena}din`;
+  h3Korpa.after(divKorpa);
+  Kupac.isLoged = true;
+  inputPassword.value = "";
+  inputUsername.value = "";
 }
