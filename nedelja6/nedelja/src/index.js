@@ -1,41 +1,35 @@
-class ProductGroup {
-  title;
-  vat;
-  constructor(title, vat) {
-    this.title = title;
-    this.vat = vat;
-  }
-}
+import {
+  ProductGroup,
+  Product,
+  ShopppingCartItem,
+  ShoppingCart,
+} from "./model.js";
 
-class Product {
-  barCode;
-  title;
-  price;
-  group;
-  constructor(barCode, title, price, group) {
-    this.barCode = barCode;
-    this.title = title;
-    this.price = price;
-    this.group = group;
-  }
-}
+import Checkout from "./view.js";
+let mlecniProizvodi = new ProductGroup("Mlecni proizvodi", 8);
+let svezeMeso = new ProductGroup("Sveze Meso", 20);
 
-class ShopppingCartItem {
-  product;
-  quantity;
-  constructor(product, quantity) {
-    this.product = product;
-    this.quantity = quantity;
-  }
-}
+let mleko = new Product(12345, "Mleko", 100, mlecniProizvodi);
+let pavlaka = new Product(54321, "Pavlaka 180g", 54.9, mlecniProizvodi);
+let juneciBut = new Product(56789, "Juneci but kg", 700, svezeMeso);
+let beloMesoFile = new Product(98765, "Belo meso file kg", 640.99, svezeMeso);
 
-class ShoppingCart {
-  items;
-  constructor() {
-    this.items = [];
-  }
-  addProduct(product, quantity = 1) {}
-}
-class Checkout {
-  printCheck(shoppingCart) {}
-}
+let korpa = new ShoppingCart();
+
+korpa.addProduct(mleko, 1);
+korpa.addProduct(mleko, 3);
+korpa.addProduct(pavlaka, 2);
+korpa.addProduct(mleko, 15);
+korpa.addProduct(juneciBut, 0.5);
+korpa.addProduct(pavlaka, 3);
+korpa.addProduct(mleko, 1);
+korpa.addProduct(juneciBut, 1);
+korpa.addProduct(pavlaka, 5);
+korpa.addProduct(beloMesoFile, 1);
+korpa.addProduct(beloMesoFile, 0.5);
+korpa.addProduct(beloMesoFile, 3.5);
+
+console.log(korpa);
+
+let racun = new Checkout();
+racun.printCheck(korpa);
