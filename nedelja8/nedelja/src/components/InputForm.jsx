@@ -27,6 +27,8 @@ const InputForm = (props) => {
       amount: enteredAmount,
     };
     props.onSaveData(item);
+    setEnteredDescription("");
+    setEnteredAmount("");
   };
 
   return (
@@ -41,6 +43,7 @@ const InputForm = (props) => {
           className="add__description"
           placeholder="Opis"
           onChange={descriptionChangeHandler}
+          value={enteredDescription}
         />
         <input
           type="number"
@@ -49,6 +52,7 @@ const InputForm = (props) => {
           min="0.01"
           step="0.01"
           onChange={amountHandler}
+          value={enteredAmount}
         />
         <button className="add__btn" onClick={btnClickHandler}>
           <Checkmark className="checkmark" size="small" />
