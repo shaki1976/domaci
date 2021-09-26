@@ -1,6 +1,7 @@
 import { useState } from "react";
 import { Checkmark } from "react-checkmark";
 import { v4 as uuidv4 } from "uuid";
+import "./InputForm.css";
 
 const InputForm = (props) => {
   const [selectedType, setSelectedType] = useState("inc");
@@ -50,7 +51,7 @@ const InputForm = (props) => {
           onChange={amountHandler}
         />
         <button className="add__btn" onClick={btnClickHandler}>
-          <Checkmark className="checkmark" size="medium" />
+          <Checkmark className="checkmark" size="small" />
         </button>
       </div>
     </div>

@@ -1,3 +1,5 @@
+import "./ShowDate.css";
+
 const ShowDate = ({ date }) => {
   let getMonth = (date) => {
     //let date = new Date();
@@ -38,7 +40,7 @@ const ShowDate = ({ date }) => {
   };
 
   return (
-    <div>
+    <div className="budget__title">
       Dostupan budžet u {getMonth(date)} {getYear(date)}
     </div>
   );

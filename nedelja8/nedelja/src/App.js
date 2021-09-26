@@ -1,33 +1,24 @@
 import { useState } from "react";
 import "./App.css";
+import ExpenseList from "./components/ExpenseList";
 import Header from "./components/Header";
+import IncomeList from "./components/IncomeList";
 import InputForm from "./components/InputForm";
 
 function App() {
   const [incomes, setIncomes] = useState([]);
   const [expenses, setExpenses] = useState([]);
-  const [total, setTotal] = useState(0);
-  const [totalExpenses, setTotalExpenses] = useState(0);
-  const [totalIncomes, setTotalIncomes] = useState(0);
 
-  // setTotal(setTotalIncomes())
+  let total = 0;
+  let totalIncomes = incomes.reduce((sum, item) => {
+    return sum + Number(item.amount);
+  }, 0);
 
-  // const calculateTotal = (incomes, expenses) => {
-  //   let total = 0;
-  //   let totalIncomes = 0;
-  //   let totalExpenses = 0;
-  //   if (incomes.length === 0)
-  //     totalIncomes = incomes.reduce((sum, item) => {
-  //       return sum + item.value;
-  //     }, 0);
-  //   if (expenses.length === 0)
-  //     totalExpenses = expenses.reduce((sum, item) => {
-  //       return sum + item.value;
-  //     }, 0);
+  let totalExpenses = expenses.reduce((sum, item) => {
+    return sum + Number(item.amount);
+  }, 0);
 
-  //   total = totalIncomes - totalExpenses;
-  //   return total;
-  // };
+  total = totalIncomes - totalExpenses;
 
   const addItem = (data) => {
     if (data.type === "inc") {
@@ -37,6 +28,7 @@ function App() {
           {
             description: data.description,
             amount: data.amount,
+            id: data.id,
           },
         ];
       });
@@ -45,7 +37,7 @@ function App() {
         return [
           ...prevState,
           {
-            key: data.id,
+            id: data.id,
             description: data.description,
             amount: data.amount,
           },
@@ -54,13 +46,20 @@ function App() {
     }
   };
 
-  console.log(`incomes: ${incomes}`);
-  console.log(`expenses: ${expenses}`);
-
   return (
     <div className="App">
-      <Header incomes={incomes} expenses={expenses} total={total} />
+      <Header
+        incomes={incomes}
+        expenses={expenses}
+        total={total}
+        totalIncomes={totalIncomes}
+        totalExpenses={totalExpenses}
+      />
       <InputForm onSaveData={addItem} />
+      <div className="container clearfix">
+        <IncomeList incomes={incomes} />
+        <ExpenseList expenses={expenses} />
+      </div>
     </div>
   );
 }

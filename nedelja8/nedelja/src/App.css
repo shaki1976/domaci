@@ -1,6 +1,6 @@
-.App {
+/* .App {
   text-align: center;
-}
+} */
 
 .App-header {
   background-color: #282c34;
@@ -11,4 +11,46 @@
   justify-content: center;
   font-size: calc(10px + 2vmin);
   color: white;
+}
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+.clearfix::after {
+  content: "";
+  display: table;
+  clear: both;
+}
+
+body {
+  color: #555;
+  font-family: Open Sans;
+  font-size: 16px;
+  position: relative;
+  height: 100vh;
+  font-weight: 400;
+}
+
+.right {
+  float: right;
+}
+.red {
+  color: #ff5049 !important;
+}
+.red-focus:focus {
+  border: 1px solid #ff5049 !important;
+}
+
+.container {
+  width: 1000px;
+  margin: 60px auto;
+}
+
+.clearfix::after {
+  content: "";
+  display: table;
+  clear: both;
 }
